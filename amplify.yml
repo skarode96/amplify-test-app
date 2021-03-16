@@ -6,6 +6,8 @@ frontend:
         - yarn install
     build:
       commands:
+        - if [ "${AWS_BRANCH}" = "master" ]; then set NODE_ENV=master; fi
+        - if [ "${AWS_BRANCH}" = "staging" ]; then set NODE_ENV=staging; fi
         - yarn run build
   artifacts:
     baseDirectory: build
